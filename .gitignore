@@ -1,0 +1,7 @@
+__pycache__/
+fonts/
+migrations/
+*.pyc
+*.sqlite
+*.jpg
+*.hdf5
