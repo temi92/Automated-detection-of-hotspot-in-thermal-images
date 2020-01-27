@@ -42,5 +42,19 @@ optional arguments:
 ```
 ### Example - Training a classifier on the extracted features
   ```python classifier.py -train features_training.hdf5 -test features.hdf5``` <br/>
+  
   Output from the python script would be a `model.cpickle` file
   
+  
+ ## Running the flask app  to perform hot spot detection.
+ 
+ Run the following commands to create your apps database tables and perform initial migration
+ ```bash
+flask db init
+flask db migrate
+flask db upgrade
+```
+To run the web application use:
+```bash
+python app.py
+```
