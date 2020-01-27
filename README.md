@@ -58,3 +58,13 @@ To run the web application use:
 ```bash
 python app.py
 ```
+A web server would be spawend and one can type in the browser `localhost:5000` and you should see:
+# ![gui](pics/gui_dl.png)
+
+Input image-  thermal image with hotspots in image
+# ![gui](pics/positive_hotspot.png)
+
+Input image - thermal image with no hotspots in image
+# ![gui](pics/negative_hotspot.png)
+
+
