@@ -6,10 +6,14 @@ import argparse
 import pickle
 import h5py
 
+ap = argparse.ArgumentParser()
+ap.add_argument("-train",  "--train_hdf5", required=True, help="path to trained hdf5 file")
+ap.add_argument("-test", "--test_hdf5", required=True, help="path to test hdf5 file")
+args = vars(ap.parse_args())
 
 
-db_training = h5py.File("features_training.hdf5", "r")
-db_testing = h5py.File("features_testing.hdf5", "r")
+db_training = h5py.File(args["train_hdf5"], "r")
+db_testing = h5py.File(args["test_hdf5"], "r")
 
 print ("[INFO] tuning hyperparameters")
 

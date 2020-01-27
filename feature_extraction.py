@@ -6,8 +6,13 @@ import progressbar
 import random
 import os
 import tensorflow as tf
+import argparse
 
 
+ap = argparse.ArgumentParser()
+ap.add_argument("-i", "--images", required=True, help="path to input images")
+ap.add_argument("-o", "--output", required=True, help="path to output hdf5 file")
+args = vars(ap.parse_args())
 
 config = tf.compat.v1.ConfigProto()
 #config.gpu_options.per_process_gpu_memory_fraction = 0.3
@@ -18,11 +23,11 @@ session = tf.compat.v1.InteractiveSession(config=config)
 
 
 
-TRAINING_IMAGES="../training_test_data/testing/test_images_1"
+IMAGES = args["images"]
 batch_size=32 #batch size pass through neural network..
 
-#genereate and shuffle images..
-image_paths = list(generate_images(TRAINING_IMAGES))
+#generate and shuffle images..
+image_paths = list(generate_images(IMAGES))
 random.shuffle(image_paths)
 
 # extract the class labels from the image paths then encode the
@@ -36,7 +41,7 @@ print("loading network...")
 model = tf.keras.applications.VGG16(weights="imagenet", include_top=False)
 
 #write to HDF5 format
-dataset = DatasetWriter((len(image_paths), 512*7*7), "features_testing.hdf5", "features",buff_size=1000)
+dataset = DatasetWriter((len(image_paths), 512*7*7), args["output"], "features",buff_size=1000)
 dataset.store_class_labels(le.classes_)
 
 
