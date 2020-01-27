@@ -13,7 +13,7 @@ optional arguments:
 -o OUTPUT, --output OUTPATH path to output hdf5 file
 ```
 ### Example - Extracting features from training images
-  python feature_extraction.py -i ../training_test_data/training/ -o features_training.hdf5
+  ```python feature_extraction.py -i ../training_test_data/training/ -o features_training.hdf5```
   
 ### Example - Extracting features from testing images
   python feature_extraction.py -i ../training_test_data/testing/ -o features_testing.hdf5
@@ -28,6 +28,6 @@ optional arguments:
 -test TEST_HDF5, --test TEST_HDF5 path to test hdf5 file
 ```
 ### Example - Training a classifier on the extracted features
-  python classifier.py -train features_training.hdf5 -test features.hdf5
-Output from the python script would be a `model.cpickle` file
+  ```python classifier.py -train features_training.hdf5 -test features.hdf5```
+  Output from the python script would be a `model.cpickle` file
   
