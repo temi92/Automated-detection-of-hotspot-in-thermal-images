@@ -29,7 +29,7 @@ optional arguments:
   ```python feature_extraction.py -i ../training_test_data/training/ -o features_training.hdf5```
   
 ### Example - Extracting features from testing images
-  python feature_extraction.py -i ../training_test_data/testing/ -o features_testing.hdf5
+   ``python feature_extraction.py -i ../training_test_data/testing/ -o features_testing.hdf5 ```
 
 Once the features have been extracted, a Logistric Regression model can be trained on the extracted features
 
