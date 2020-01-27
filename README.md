@@ -41,6 +41,6 @@ optional arguments:
 -test TEST_HDF5, --test TEST_HDF5 path to test hdf5 file
 ```
 ### Example - Training a classifier on the extracted features
-  ```python classifier.py -train features_training.hdf5 -test features.hdf5```
+  ```python classifier.py -train features_training.hdf5 -test features.hdf5``` <br/>
   Output from the python script would be a `model.cpickle` file
   
