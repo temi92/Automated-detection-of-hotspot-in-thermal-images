@@ -58,3 +58,4 @@ To run the web application use:
 ```bash
 python app.py
 ```
+# ![gui](pics/gui_dl.png)
