@@ -3,6 +3,19 @@ A  CNN network trained for detecting hotspot in thermal imagery via transfer lea
 The binary detection method determines whether an image contains hotspots or not. 
 A pre trained VGG16 keras model is used to extract arbitary feature vectors that globally describe the image. Based on the extracted features, a Logistic Regression classifier is trained on the features for image classification purposes. For images that contain hotspot, the hotspot regions are localised using Otsus's adaptive thresholding techniques.
 
+
+
+## Installation
+
+Software has been developed on Python2. Install dependencies using 
+``` bash
+pip install -r requirements.txt
+```
+### Fix opencv dependency issue when installing with pip on debian system
+``` bash
+apt-get install -y libsm6 libxext6 libxrender-dev
+```
+
 ## Instructions on using the VGG16 model for extracting features from training and testing data.
 
 ```bash
