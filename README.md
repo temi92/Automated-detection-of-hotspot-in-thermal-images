@@ -5,16 +5,22 @@ A pre trained VGG16 keras model is used to extract arbitary feature vectors that
 
 
 
-## Installation
-
-Software has been developed on Python2. Install dependencies using 
-``` bash
-pip install -r requirements.txt
-```
 ### Fix opencv dependency issue when installing with pip on debian system
 ``` bash
 apt-get install -y libsm6 libxext6 libxrender-dev
 ```
+### Fix - add dependencies for opengl dependency
+``` bash
+sudo apt-get install -y libgirepository1.0-dev build-essential \
+  libbz2-dev libreadline-dev libssl-dev zlib1g-dev libsqlite3-dev wget \
+  curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libcairo2-dev
+```
+
+Software has been developed in Python. Install dependencies using
+``` bash
+pip install -r requirements.txt
+```
+
 
 ## Instructions on using the VGG16 model for extracting features from training and testing data.
 
