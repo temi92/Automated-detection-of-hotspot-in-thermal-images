@@ -2,6 +2,9 @@
 A  CNN network trained for detecting hotspot in thermal imagery via transfer learning.
 The binary detection method determines whether an image contains hotspots or not. 
 A pre trained VGG16 keras model is used to extract arbitary feature vectors that globally describe the image. Based on the extracted features, a Logistic Regression classifier is trained on the features for image classification purposes. For images that contain hotspot, the hotspot regions are localised using Otsus's adaptive thresholding techniques.
+See demonstration here <br/>
+http://hotspotdl.herokuapp.com/
+
 
 
 ## Install via pip
