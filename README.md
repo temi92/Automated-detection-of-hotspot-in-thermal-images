@@ -9,7 +9,7 @@ A pre trained VGG16 keras model is used to extract arbitary feature vectors that
 ``` bash
 apt-get install -y libsm6 libxext6 libxrender-dev
 ```
-### Fix - add dependencies for opengl dependency
+### Fix - add dependencies for opengl
 ``` bash
 sudo apt-get install -y libgirepository1.0-dev build-essential \
   libbz2-dev libreadline-dev libssl-dev zlib1g-dev libsqlite3-dev wget \
