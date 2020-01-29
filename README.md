@@ -4,7 +4,7 @@ The binary detection method determines whether an image contains hotspots or not
 A pre trained VGG16 keras model is used to extract arbitary feature vectors that globally describe the image. Based on the extracted features, a Logistic Regression classifier is trained on the features for image classification purposes. For images that contain hotspot, the hotspot regions are localised using Otsus's adaptive thresholding techniques.
 
 
-
+## Install via pip
 ### Fix opencv dependency issue when installing with pip on debian system
 ``` bash
 apt-get install -y libsm6 libxext6 libxrender-dev
@@ -15,13 +15,19 @@ sudo apt-get install -y libgirepository1.0-dev build-essential \
   libbz2-dev libreadline-dev libssl-dev zlib1g-dev libsqlite3-dev wget \
   curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libcairo2-dev
 ```
-
-Software has been developed in Python. Install dependencies using
+Software has been developed in Python. Install dependencies using pip
 ``` bash
 pip install -r requirements.txt
 ```
-
-
+## Install - Using Docker
+Build docker image
+``` bash
+docker build -t <name of image > .
+```
+Run docker container 
+``` bash
+docker run -it -p 5000:5000 <name of image > 
+```
 ## Instructions on using the VGG16 model for extracting features from training and testing data.
 
 ```bash
