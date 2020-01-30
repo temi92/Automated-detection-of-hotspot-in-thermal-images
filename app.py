@@ -72,7 +72,6 @@ def label_image(image, text):
     cv2.putText(image, "Label: {}".format(text),
             (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
 
-load_model()
 @app.route("/")
 @app.route("/predict_image", methods=["GET", "POST"])
 def predict_image():
@@ -118,4 +117,5 @@ def misclassified_image():
 
 
 if __name__ == '__main__':
+    load_model()
     app.run(port=5000, debug=True, host='0.0.0.0')
