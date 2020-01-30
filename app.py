@@ -1,11 +1,10 @@
 from flask import Flask, render_template, request, jsonify, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+
 from sklearn.preprocessing import LabelEncoder
 from PIL import Image, ImageDraw, ImageFont
-from skimage import measure
-import mahotas
-from roi import Roi
+from hotspotDetection import Roi
 import tensorflow as tf
 import pickle
 import numpy as np
@@ -17,13 +16,13 @@ import os
 app = Flask(__name__)
 
 basedir = os.path.abspath(os.path.dirname(__file__))
+
 app.config["SECRET_KEY"] = "secret_key"
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///"+os.path.join(basedir, "tmp.sqlite")
 
 app.config[" SQLALCHEMY_TRACK_MODIFICATIONS "] = False
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
-
 
 
 class Image(db.Model):
@@ -40,7 +39,7 @@ model = None
 l = LabelEncoder()
 
 def load_model():
-    with open("model.cpickle", 'rb') as f:
+    with open("hotspotDetection/model.cpickle", 'rb') as f:
         global model
         model = pickle.load(f)
 
@@ -116,6 +115,7 @@ def misclassified_image():
     db.session.add(image)
     db.session.commit()
     return jsonify({"success":file_image.filename})
+
 
 if __name__ == '__main__':
     app.run(port=5000, debug=True, host='0.0.0.0')
