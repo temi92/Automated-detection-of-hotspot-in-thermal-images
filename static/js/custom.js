@@ -2,8 +2,9 @@ $(document).ready( function() {
 	var color_blue = '#4c8ffc';
        	var color_red = '#FF0000';
 	var emptyImage = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
-	$(".alert-success").hide();
-	$(".alert-danger").hide();
+	$("#success1").hide();
+	$("#failure1").hide();
+	$("#failure0").hide();
     	$(document).on('change', '.btn-file :file', function() {
 		
 		var input = $(this),
@@ -51,14 +52,26 @@ $(document).ready( function() {
 
 		$("#upload").on("click", function(){
 
-		    //disable button after its been clicked
+		   
+		 //disable button after its been clicked
 		    $("#upload").prop("disabled", true);
 
-            //grab form data..
-		    var form_data = new FormData($('#upload_image')[0]);
+	            if ($("#img-upload")[0].src === "")
+		   {
+			 $("#failure0").show(2000).hide(1000);
+			 $("#upload").prop("disabled", false);
 
-			ajaxCall("/predict_image", "#img-upload", form_data, "#upload");
+		   }
+		   else
+		   {
+			//grab form data..
+                    	var form_data = new FormData($('#upload_image')[0]);
 		
+                   	ajaxCall("/predict_image", "#img-upload", form_data, "#upload");
+	       	   }
+
+
+            	    		
 		});
 
 		// send misclassified image to backend..
@@ -66,7 +79,7 @@ $(document).ready( function() {
 		$("#upload-misclassified").on("click",function(){
 
 			if ($("#misclassified-img-upload")[0].src === ""|| $("#misclassified-img-upload")[0].src === emptyImage){
-				 $(".alert-danger").show(2000).hide(1000);	
+				 $("#failure1").show(2000).hide(1000);	
 			}
 	
 			else{
@@ -102,7 +115,7 @@ $(document).ready( function() {
 						//check if misclassified button pressed
 						if ($(btn_id).attr("id") === "upload-misclassified"){
 
-								$(".alert-success").show(2000).hide(1000);
+								$("#success1").show(2000).hide(1000);
 
 								$('#misclassified-img-upload').attr('src',emptyImage); 
 								$("#mis_img").val("");
