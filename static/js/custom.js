@@ -1,7 +1,9 @@
 $(document).ready( function() {
-		var color_blue = '#4c8ffc';
-        var color_red = '#FF0000';
-		$("#notify_user").hide();
+	var color_blue = '#4c8ffc';
+       	var color_red = '#FF0000';
+	var emptyImage = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
+	$(".alert-success").hide();
+	$(".alert-danger").hide();
     	$(document).on('change', '.btn-file :file', function() {
 		
 		var input = $(this),
@@ -31,7 +33,7 @@ $(document).ready( function() {
 		        }
 
 		        reader.readAsDataURL(input.files[0]);
-		        console.log("here");
+		      
 		    }
 		}
 
@@ -63,13 +65,17 @@ $(document).ready( function() {
 
 		$("#upload-misclassified").on("click",function(){
 
-		
+			if ($("#misclassified-img-upload")[0].src === ""|| $("#misclassified-img-upload")[0].src === emptyImage){
+				 $(".alert-danger").show(2000).hide(1000);	
+			}
 	
+			else{
 			//disbale button ..
 			$("#upload-misclassified").prop("disabled", true);
 			var form_data = new FormData($('#misclassified_image')[0]);
 			ajaxCall("/misclassified_image", "#misclassified-img-upload", form_data, "#upload-misclassified",plot_chart=false)
 			//alert("test");
+			}
 
 		});
 
@@ -96,9 +102,9 @@ $(document).ready( function() {
 						//check if misclassified button pressed
 						if ($(btn_id).attr("id") === "upload-misclassified"){
 
-								$(".alert").show(2000).hide(1000);
+								$(".alert-success").show(2000).hide(1000);
 
-								$('#misclassified-img-upload').attr('src', 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=='); 
+								$('#misclassified-img-upload').attr('src',emptyImage); 
 								$("#mis_img").val("");
 						}
 

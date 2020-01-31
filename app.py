@@ -38,6 +38,7 @@ model = None
 
 l = LabelEncoder()
 
+
 def load_model():
     with open("hotspotDetection/model.cpickle", 'rb') as f:
         global model
@@ -72,6 +73,7 @@ def label_image(image, text):
     cv2.putText(image, "Label: {}".format(text),
             (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
 
+load_model()
 @app.route("/")
 @app.route("/predict_image", methods=["GET", "POST"])
 def predict_image():
@@ -110,6 +112,7 @@ def predict_image():
 @app.route("/misclassified_image", methods=["POST"])
 def misclassified_image():
     file_image = request.files["misclassified_image"]
+    print(file_image.filename)
     image = Image(name=file_image.filename,data=file_image.read())
     db.session.add(image)
     db.session.commit()
@@ -117,5 +120,4 @@ def misclassified_image():
 
 
 if __name__ == '__main__':
-    load_model()
     app.run(port=5000, debug=True, host='0.0.0.0')
