@@ -31,8 +31,8 @@ class Image(db.Model):
     data = db.Column(db.LargeBinary)
 
 #model to extract features from image
-model_vgg16 = tf.keras.applications.VGG16(weights="imagenet", include_top=False)
-
+#model_vgg16 = tf.keras.applications.VGG16(weights="imagenet", include_top=False)
+model_vgg16 = tf.keras.models.load_model("hotspotDetection/vgg16.h5")
 #model to run classifier on extracted features.
 model = None
 
