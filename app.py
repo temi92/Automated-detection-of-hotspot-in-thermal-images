@@ -13,12 +13,14 @@ import base64
 import cStringIO
 import cv2
 import os
+import config
 app = Flask(__name__)
 
 basedir = os.path.abspath(os.path.dirname(__file__))
+#print ("sqlite:///"+os.path.join(basedir, "tmp.sqlite"))
 
-app.config["SECRET_KEY"] = "secret_key"
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///"+os.path.join(basedir, "tmp.sqlite")
+#app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///"+os.path.join(basedir, "tmp.sqlite")
+app.config.from_object(os.environ["APP_SETTINGS"])
 
 app.config[" SQLALCHEMY_TRACK_MODIFICATIONS "] = False
 db = SQLAlchemy(app)
