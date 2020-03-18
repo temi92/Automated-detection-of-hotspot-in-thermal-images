@@ -17,4 +17,7 @@ RUN pip install -r requirements.txt
 RUN pip install gunicorn
 
 
-CMD gunicorn app:app --bind 0.0.0.0:5000 --reload
+#CMD gunicorn app:app --bind 0.0.0.0:5000 --reload
+
+CMD gunicorn app:app --bind 0.0.0.0:$PORT --reload
+
