@@ -12,6 +12,7 @@ import argparse
 ap = argparse.ArgumentParser()
 ap.add_argument("-i", "--images", required=True, help="path to input images")
 ap.add_argument("-o", "--output", required=True, help="path to output hdf5 file")
+ap.add_argument("-c,", "--cnn", required = True,  choices=["mobilenet",  "vgg16"])
 args = vars(ap.parse_args())
 
 config = tf.compat.v1.ConfigProto()
@@ -21,6 +22,16 @@ config = tf.compat.v1.ConfigProto()
 config.gpu_options.allow_growth = True
 session = tf.compat.v1.InteractiveSession(config=config)
 
+
+
+#note V166 model takes (512 x 7 x7 ) and mobileNet takes (1280 x 7 x7)
+print("loading network...")
+if args["cnn"] == "vgg16":
+    model = tf.keras.applications.VGG16(weights="imagenet", include_top=False)
+    shape = (512, 7, 7)
+else:
+    model = tf.keras.applications.MobileNetV2(weights="imagenet", include_top=False)
+    shape = (1280, 7, 7)
 
 
 IMAGES = args["images"]
@@ -36,12 +47,10 @@ labels = [p.split(os.path.sep)[-2] for p in image_paths]
 le = LabelEncoder()
 labels = le.fit_transform(labels)
 
-#load model..
-print("loading network...")
-model = tf.keras.applications.VGG16(weights="imagenet", include_top=False)
+
 
 #write to HDF5 format
-dataset = DatasetWriter((len(image_paths), 512*7*7), args["output"], "features",buff_size=1000)
+dataset = DatasetWriter((len(image_paths), shape[0]* shape[1]* shape[2]), args["output"], "features",buff_size=1000)
 dataset.store_class_labels(le.classes_)
 
 
@@ -80,10 +89,11 @@ for i in np.arange(0, len(image_paths), batch_size):
 
     print (features.shape)
     #reshape the features..
-    features = features.reshape((features.shape[0], 512 * 7 * 7))
+    features = features.reshape((features.shape[0], shape[0]* shape[1]* shape[2]))
 
     #add the features and labels to HDF5 
     dataset.add_chunk(features, batch_labels)
     pbar.update(i)
 dataset.close()
 pbar.finish()
+
