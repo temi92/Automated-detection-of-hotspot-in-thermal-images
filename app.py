@@ -20,7 +20,8 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 #print ("sqlite:///"+os.path.join(basedir, "tmp.sqlite"))
 
 #app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///"+os.path.join(basedir, "tmp.sqlite")
-app.config.from_object(os.environ["APP_SETTINGS"])
+#app.config.from_object(os.environ["APP_SETTINGS"])
+app.config.from_object(config.Config)
 
 app.config[" SQLALCHEMY_TRACK_MODIFICATIONS "] = False
 db = SQLAlchemy(app)
