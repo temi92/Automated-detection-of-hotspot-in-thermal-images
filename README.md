@@ -28,7 +28,7 @@ docker build -t <name of image > .
 ```
 Run docker container 
 ``` bash
-docker run -it -p 5000:5000 <name of image > 
+docker run -it -e PORT=5000 -e DATABASE_URL=sqlite:///tmp/tmp.sqlite -p 5000:5000 <name of image > 
 ```
 ## Instructions on using the VGG16 model for extracting features from training and testing data.
 
