@@ -5,3 +5,4 @@ migrations/
 *.sqlite
 *.jpg
 *.hdf5
+*.h5
