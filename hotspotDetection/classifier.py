@@ -20,6 +20,8 @@ print ("[INFO] tuning hyperparameters")
 params = {"C": [0.1, 1.0, 10.0, 100.0, 1000.0, 10000.0]}
 model = GridSearchCV(LogisticRegression(), params, cv=3,n_jobs=-1)
 
+#model = LogisticRegression(C=0.1, n_jobs=-1)
+
 model.fit(db_training["features"][:], db_training["labels"][:])
 
 
