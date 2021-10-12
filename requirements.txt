@@ -44,7 +44,7 @@ mock==3.0.5
 networkx==2.2
 numpy==1.16.6
 oauthlib==3.1.0
-opencv-python==4.1.2.30
+opencv-python==4.2.0.32
 opt-einsum==2.3.2
 Pillow==6.2.2
 progressbar==2.5
