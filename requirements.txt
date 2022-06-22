@@ -42,7 +42,7 @@ MarkupSafe==1.1.1
 matplotlib==2.2.4
 mock==3.0.5
 networkx==2.2
-numpy==1.16.6
+numpy==1.22.0
 oauthlib==3.1.0
 opencv-python==4.1.2.30
 opt-einsum==2.3.2
